@@ -1,6 +1,7 @@
 QT += quick
 
 SOURCES += \
+        cryptocontroller.cpp \
         main.cpp \
         randomizer.cpp
 
@@ -20,4 +21,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    cryptocontroller.h \
     randomizer.h
+
+win32 {
+LIBS += C:\Qt\Tools\OpenSSL\Win_x64\lib\libssl.lib \
+     C:\Qt\Tools\OpenSSL\Win_x64\lib\libcrypto.lib
+    }
+INCLUDEPATH += C:\Qt\Tools\OpenSSL\Win_x64\include\

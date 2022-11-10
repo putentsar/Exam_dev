@@ -20,24 +20,18 @@ Window {
            }
        }
 
-//       ListModel {
-         id:contactModel
-////           ListElement {
-////               name: "1234"
-////           }
-////           ListElement {
-////               name: "????"
-////           }
-////           ListElement {
-////               name: "????"
-////           }
-////           ListElement {
-////               name: "????"
-////           }
-////           ListElement {
-////               name: "????"
-////           }
-//    }
+       function encrypt_pwd(crypt_password) {
+               cryptoController.encrypt_login_or_password(crypt_password)
+           }
+       function crypt_controller(password) {
+               let is_correct_passwd = cryptoController.check_password(password)
+               if(is_correct_passwd) {
+                   pin_code=password
+                   stackView.push(pageMain)
+               } else {
+                   stackView.push(pageError)
+               }
+       }
 StackView{
     anchors.fill: parent
     id: stackView

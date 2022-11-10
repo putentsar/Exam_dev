@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "randomizer.h"
+#include "cryptocontroller.h""
 #include <QQmlContext>
 #include <QDebug>
 #include <QRegularExpression>
@@ -21,6 +22,10 @@ int main(int argc, char *argv[])
     Randomizer rnd;
     QQmlContext *context1 = engine.rootContext();
     context1->setContextProperty("Randomizer", &rnd);
+
+    CryptoController crp;
+    QQmlContext *context = engine.rootContext();
+    context->setContextProperty("CryptoController", &crp);
 
     engine.load(url);
     return app.exec();
