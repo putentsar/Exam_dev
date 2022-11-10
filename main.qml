@@ -11,15 +11,6 @@ Window {
        minimumHeight: height
        minimumWidth: width
        property int amount : 9
-       Connections {
-               target: Randomizer
-               onSendMessageToQml: {
-                   dialog.open()
-                   dialogText.text = message
-               }
-       }
-       property string rnd : rand()
-
        Component.onCompleted: {
            for (let i=0; i<amount ; i++){
                let rnd = Randomizer.randomCode()
@@ -143,9 +134,9 @@ StackView{
             id: opencode
             text: qsTr("Открыть код")
             onClicked: {
-//                for (let i=0;i<amount;i++)
-//                {
-//                }
+                for (let i=0;i<amount;i++)
+                {
+                }
                 let rnd = Randomizer.randomCode()
                 gridView.model.append({
                   code: rnd
@@ -162,7 +153,7 @@ StackView{
             anchors.bottom: parent.bottom
             cellHeight : 50
             cellWidth : 90
-            model: ListModel {}
+            model: ListModel {id: codeModel}
             Component{
                    id: contactsDelegate
                    TextField {
@@ -170,12 +161,23 @@ StackView{
                        width: 80
                        height: 40
                        color: "black"
-                       echoMode: TextField.Password
+                       echoMode: gridView.isCurrentIndex ? TextField.Normal : TextField.Password
+//                     echoMode: TextField.Password
                        passwordCharacter: "✱"
                        text: code
                        readOnly: true
+                       property int itemIndex: index
+                       MouseArea{
+                           anchors.fill: parent
+                           onClicked: {
+                               gridView.currentIndex = itemIndex; // <---- does not work
+                               //  contactsView.currentIndex = index; // <---- Works
+                           }
+                       }
+
                    }
                }
+
 //     model: contactModel
      delegate: contactsDelegate
         focus: true

@@ -13,7 +13,6 @@ public slots:
  QString randomCode();
 
 signals:
- void sendMessageToQml(QString message);
 
 };
 
