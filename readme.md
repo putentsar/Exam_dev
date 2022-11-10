@@ -1,5 +1,4 @@
 <p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
     </a>
     <h1 align="center">Шифрование рандомных чисел и их получение</h1>
     <br>
