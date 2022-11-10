@@ -1,7 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-
-
+#include "randomizer.h"
+#include <QQmlContext>
+#include <QDebug>
+#include <QRegularExpression>
+#include <QUuid>
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
@@ -13,7 +16,12 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-    engine.load(url);
 
+
+    Randomizer rnd;
+    QQmlContext *context1 = engine.rootContext();
+    context1->setContextProperty("Randomizer", &rnd);
+
+    engine.load(url);
     return app.exec();
 }

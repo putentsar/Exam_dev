@@ -11,32 +11,48 @@ Window {
        minimumHeight: height
        minimumWidth: width
        property int amount : 9
+       Connections {
+               target: Randomizer
+               onSendMessageToQml: {
+                   dialog.open()
+                   dialogText.text = message
+               }
+       }
+       property string rnd : rand()
 
-      ListModel {
+       Component.onCompleted: {
+           for (let i=0; i<amount ; i++){
+               let rnd = Randomizer.randomCode()
+           gridView.model.append({
+             code: rnd
+                                 });
+           }
+       }
+
+//       ListModel {
          id:contactModel
-         ListElement {
-              name: "1234"
-           }
-           ListElement {
-              name: "????"
-           }
-           ListElement {
-              name: "????"
-           }
-           ListElement {
-               name: "????"
-           }
-           ListElement {
-               name: "????"
-           }
-    }
+////           ListElement {
+////               name: "1234"
+////           }
+////           ListElement {
+////               name: "????"
+////           }
+////           ListElement {
+////               name: "????"
+////           }
+////           ListElement {
+////               name: "????"
+////           }
+////           ListElement {
+////               name: "????"
+////           }
+//    }
 StackView{
     anchors.fill: parent
     id: stackView
 
     initialItem: Page {
         id: pageLogin
-
         GridLayout {
             anchors.fill: parent
             rowSpacing: 10
@@ -126,6 +142,9 @@ StackView{
             Layout.column: 0
             id: opencode
             text: qsTr("Открыть код")
+            onClicked: {
+
+             }
         }
         GridView {
              id:gridView
@@ -137,8 +156,7 @@ StackView{
             anchors.bottom: parent.bottom
             cellHeight : 50
             cellWidth : 90
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
+            model: ListModel {}
             Component{
                    id: contactsDelegate
                    TextField {
@@ -148,11 +166,11 @@ StackView{
                        color: "black"
                        echoMode: TextField.Password
                        passwordCharacter: "✱"
-                       text: name
+                       text: code
                        readOnly: true
                    }
                }
-     model: contactModel
+//     model: contactModel
      delegate: contactsDelegate
         focus: true
         }
