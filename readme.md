@@ -22,6 +22,6 @@
 
 Скриншоты интерфейса
 ------------
-![alt text](https://github.com/putentsar/Exam_dev/blob/P2/screens/screen1.png)
+![alt text](https://github.com/putentsar/Exam_dev/blob/P2/screens/screen11.png)
 ![alt text](https://github.com/putentsar/Exam_dev/blob/P2/screens/screen2.png)
 ![alt text](https://github.com/putentsar/Exam_dev/blob/P2/screens/screen3.png)
