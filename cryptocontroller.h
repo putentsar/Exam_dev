@@ -20,9 +20,6 @@ private:
     unsigned char * iv = (unsigned char *)("77411230141456889873614547987324");
 
 signals:
-    // РЎРёРіРЅР°Р» РґР»СЏ РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С… РІ qml-РёРЅС‚РµСЂС„РµР№СЃ
-    void sendDbToQml(QString db_decrypted);
-    void sendMessageToQml(QString message);
 
 };
 

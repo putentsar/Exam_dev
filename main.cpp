@@ -1,7 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "randomizer.h"
-#include "cryptocontroller.h""
+#include "cryptocontroller.h"
 #include <QQmlContext>
 #include <QDebug>
 #include <QRegularExpression>

@@ -11,6 +11,7 @@ Window {
        minimumHeight: height
        minimumWidth: width
        property int amount : 9
+       property string pin_code: ""
        Component.onCompleted: {
            for (let i=0; i<amount ; i++){
                let rnd = Randomizer.randomCode()
@@ -21,10 +22,10 @@ Window {
        }
 
        function encrypt_pwd(crypt_password) {
-               cryptoController.encrypt_login_or_password(crypt_password)
+               CryptoController.encrypt_login_or_password(crypt_password)
            }
        function crypt_controller(password) {
-               let is_correct_passwd = cryptoController.check_password(password)
+               let is_correct_passwd = CryptoController.check_password(password)
                if(is_correct_passwd) {
                    pin_code=password
                    stackView.push(pageMain)
@@ -32,10 +33,10 @@ Window {
                    stackView.push(pageError)
                }
        }
+
 StackView{
     anchors.fill: parent
     id: stackView
-
     initialItem: Page {
         id: pageLogin
         GridLayout {
@@ -59,17 +60,12 @@ StackView{
 
             Button {
                 id: login_button
-                property string good_pass: "1234"
                     text: qsTr("Вход")
                     Layout.row: 2
                     Layout.alignment: Qt.AlignHCenter || Qt.AlignVCenter
                     onClicked:{
-                        if(password_code.text === good_pass){
-                            stackView.push(pageMain)
-                        }
-                        else{
-                        stackView.push(pageError)
-                        }
+                        crypt_controller(password_code.text)
+                        password_code.text = ""
                     }
             }
 
@@ -82,7 +78,6 @@ StackView{
     Page {
         id: pageError
         visible: false
-
         GridLayout {
             anchors.fill: parent
             rowSpacing: 10
