@@ -16,5 +16,6 @@ QString Randomizer::randomCode(){
            QString str = QUuid::createUuid().toString();
             str.remove(QRegularExpression("{|}|-"));// if you want only hex numbers
             str.resize(4);
+            qDebug()<<str;
             return str;
 }

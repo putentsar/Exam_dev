@@ -136,6 +136,7 @@ StackView{
             onClicked: {
                 for (let i=0;i<amount;i++)
                 {
+
                 }
                 let rnd = Randomizer.randomCode()
                 gridView.model.append({
@@ -170,8 +171,7 @@ StackView{
                        MouseArea{
                            anchors.fill: parent
                            onClicked: {
-                               gridView.currentIndex = itemIndex; // <---- does not work
-                               //  contactsView.currentIndex = index; // <---- Works
+                               gridView.currentIndex = itemIndex;
                            }
                        }
 
