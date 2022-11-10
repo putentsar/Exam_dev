@@ -143,7 +143,13 @@ StackView{
             id: opencode
             text: qsTr("Открыть код")
             onClicked: {
-
+//                for (let i=0;i<amount;i++)
+//                {
+//                }
+                let rnd = Randomizer.randomCode()
+                gridView.model.append({
+                  code: rnd
+                                      });
              }
         }
         GridView {
